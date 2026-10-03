@@ -17,6 +17,10 @@ void CUIGamepadLegend::Draw()
 		{
 			continue;
 		}
+		if (W->ui_cast_static())
+		{
+			W->ui_cast_static()->AdjustWidthToText();
+		}
 		totalWidth += W->GetWndSize().x;
 		totalWidth += Spacing;
 	}
@@ -33,10 +37,6 @@ void CUIGamepadLegend::Draw()
 		x += W->GetWndSize().x;
 		x += Spacing;
 
-		if (W->ui_cast_static())
-		{
-			W->ui_cast_static()->AdjustWidthToText();
-		}
 		W->Draw();
 	}
 }
