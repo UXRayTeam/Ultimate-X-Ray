@@ -22,7 +22,7 @@ void CUIHelp::Draw()
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, ImVec2(180, 0));
 	if (ImGui::Begin("About SDK##Help", &bOpen))
 	{
-		TextCentered("IX-Ray SDK 1.0");
+		TextCentered("Ultimate X-Ray SDK 1.0");
 		ImGui::Separator();
 
 		ImGui::Text("Based on:");

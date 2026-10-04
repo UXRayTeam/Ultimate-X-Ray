@@ -804,7 +804,7 @@ bool EScene::LoadLTX(const char* map_name, bool bUndo)
 
 	if (!bUndo)
 	{
-		xr_string Name = "IX-Ray Level Editor [";
+		xr_string Name = "Ultimate X-Ray Level Editor [";
 		Name += map_name;
 		Name += "]";
 
@@ -905,7 +905,7 @@ bool EScene::Load(const char* map_name, bool bUndo)
 
 	if (!bUndo)
 	{
-		xr_string Name = "IX-Ray Level Editor [";
+		xr_string Name = "Ultimate X-Ray Level Editor [";
 		Name += map_name;
 		Name += "]";
 

@@ -48,7 +48,7 @@ CEngineExternal::~CEngineExternal()
 
 xr_string CEngineExternal::GetTitle() const
 {
-	return READ_IF_EXISTS(pOptions, r_string_wb, "general", "title", "IX-Ray Platform").c_str();
+	return READ_IF_EXISTS(pOptions, r_string_wb, "general", "title", "Ultimate X-Ray").c_str();
 }
 
 const char* CEngineExternal::GetPlayerHudOmfAdditional() const

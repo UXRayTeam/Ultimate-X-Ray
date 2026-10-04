@@ -73,7 +73,7 @@ void CApplication::InitEngine()
 
 	Msg
 	(
-		"IX-Ray %s %s build info: hash[%s] branch[%s] commit author[%s]",
+		"Ultimate X-Ray %s %s build info: hash[%s] branch[%s] commit author[%s]",
 		EngineExternal().GetCurrentPlatformFullName(),
 		_VER, _HASH, _BRANCH, _AUTHOR
 	);
@@ -111,7 +111,7 @@ int CApplication::BeginPlay()
 	WndFlags = SDL_WINDOW_VULKAN;
 #endif
 
-	g_AppInfo.Window = SDL_CreateWindow("IX-Ray Engine", 0, 0, WndFlags);
+	g_AppInfo.Window = SDL_CreateWindow("Ultimate X-Ray Engine", 0, 0, WndFlags);
 
 	splash::SetProgressStatus(20, "Initializing xrCore");
 	EngineLoadStage1(CommandLine.data());
@@ -187,7 +187,7 @@ void CApplication::MigrateToGameWindow()
 {
 	PROF_EVENT("MigrateToGameWindow");
 	SDL_ShowWindow(g_AppInfo.Window);
-	SDL_SetWindowTitle(g_AppInfo.Window, "IX-Ray Engine");
+	SDL_SetWindowTitle(g_AppInfo.Window, "Ultimate X-Ray Engine");
 
 	Console->Execute("vid_restart");
 	SDL_GetWindowSizeInPixels(g_AppInfo.Window, &Device.Width, &Device.Height);
@@ -226,7 +226,7 @@ void CApplication::ConfigureRenderer()
 		CCC_LoadCFG_custom* pTmp = new CCC_LoadCFG_custom("renderer ");
 		pTmp->Execute(Console->ConfigFile);
 		xr_delete(pTmp);
-		// � ����� ������ ���� �������� ������� CCC_R2
+		// В любом случае надо вызывать команду CCC_R2
 		Console->Execute((std::string("renderer ") + Console->GetToken("renderer")).c_str());
 	}
 }

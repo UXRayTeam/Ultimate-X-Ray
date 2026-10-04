@@ -96,7 +96,7 @@ void SDL_Application()
 	}
 
 	SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
-	g_AppInfo.Window = SDL_CreateWindow("IX-Ray Level Builder", 1000, 560, window_flags);
+	g_AppInfo.Window = SDL_CreateWindow("Ultimate X-Ray Level Builder", 1000, 560, window_flags);
 	SDL_Renderer* renderer = SDL_CreateRenderer(g_AppInfo.Window, NULL);
 
 	SDL_SetWindowPosition(g_AppInfo.Window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
@@ -261,7 +261,7 @@ int APIENTRY WinMain
 		int sz = xr_strlen(fsgame_ltx_name);
 		sscanf(strstr(lpCmdLine, fsgame_ltx_name) + sz, "%[^ ] ", fsgame);
 	}
-	Core._initialize("IX-Ray Compilers", nullptr, true, fsgame[0] ? fsgame : nullptr);
+	Core._initialize("Ultimate X-Ray Compilers", nullptr, true, fsgame[0] ? fsgame : nullptr);
 
 	Serializer = new CJsonSerializer("xrlevelbuilder.json");
 	Serializer->Read("ai", gCompilerMode.AI);

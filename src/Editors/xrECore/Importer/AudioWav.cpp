@@ -138,7 +138,7 @@ bool XRay::Importer::Audio::ImportWav(shared_str Path, shared_str Out, float Qua
 	{
 		VERIFY(!"NO ENTRY!!! EMPTY COMMENT!!!");
 		vorbis_comment_init(&vc);
-		vorbis_comment_add_tag(&vc, "ENCODER", "IX-Ray SDK AudioFile");
+		vorbis_comment_add_tag(&vc, "ENCODER", "Ultimate X-Ray SDK AudioFile");
 	}
 
 	vorbis_dsp_state vd;

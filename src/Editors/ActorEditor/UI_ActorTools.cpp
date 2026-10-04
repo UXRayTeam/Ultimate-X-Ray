@@ -346,7 +346,7 @@ bool CActorTools::Load(const char* obj_name)
 
 		UpdateProperties();
 
-		xr_string Name = "IX-Ray Actor Editor [";
+		xr_string Name = "Ultimate X-Ray Actor Editor [";
 		Name += obj_name;
 		Name += "]";
 
@@ -420,7 +420,7 @@ void CActorTools::Clear()
 	m_Flags.set(flUpdateGeometry | flUpdateMotionDefs | flUpdateMotionKeys | flReadOnlyMode, false);
 	m_EditMode = emObject;
 
-	SDL_SetWindowTitle(g_AppInfo.Window, "IX-Ray Actor Editor");
+	SDL_SetWindowTitle(g_AppInfo.Window, "Ultimate X-Ray Actor Editor");
 	UI->RedrawScene();
 }
 
