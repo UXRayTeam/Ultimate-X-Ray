@@ -22,7 +22,7 @@ DiscordShared::~DiscordShared()
 void DiscordShared::Init() noexcept 
 {
 #ifdef IXR_ENABLE_DISCORD
-	auto result = discord::Core::Create(1174634951715594311, DiscordCreateFlags_NoRequireDiscord, &Core);
+	auto result = discord::Core::Create(1556218332007370843, DiscordCreateFlags_NoRequireDiscord, &Core);
 
 	if (Core == nullptr)
 		return;
