@@ -335,6 +335,17 @@ void game_sv_GameState::OnPlayerDisconnect		(ClientID id_who, LPSTR, u16 )
 	signal_Syncronize	();
 }
 
+//old
+enum ERPGameType {		// [0..255]
+	rpgtGameAny = u8(0),
+	rpgtGameDeathmatch,
+	rpgtGameTeamDeathmatch,
+	rpgtGameArtefactHunt,
+	rpgtGameCaptureTheArtefact,
+	rpgtFreeMp,
+	rpgtGameCount,
+};
+
 static float							rpoints_Dist [TEAM_COUNT] = {1000.f, 1000.f, 1000.f, 1000.f};
 void game_sv_GameState::Create					(shared_str &options)
 {
@@ -363,31 +374,49 @@ void game_sv_GameState::Create					(shared_str &options)
 				GameType				= O->r_u16	();
 				if(type==rptItemSpawn)
 					O->r_stringZ		(rp_profile);
-
-				if (GameType != EGameIDs(u16(-1)))
+			
+				// legacy format
+				if (EngineExternal().ShadowOfChernobylMode())
 				{
-					if ((Type() == eGameIDCaptureTheArtefact) && (GameType & eGameIDCaptureTheArtefact))
+					if (GameType != rpgtGameAny)
 					{
-						team = team - 1;
-						R_ASSERT2( ((team >= 0) && (team < 4)) || 
-							(type != rptActorSpawn), 
-							"Problem with CTA Team indexes. Propably you have added rpoint of team 0 for cta game type.");
-					}
-
-					// HACK. USE DM RP POINT FOR FREE MP
-					if (!(GameType & eGameIDTeamDeathmatch) && (Type() == eGameIDFreeMP))
-					{
-						if ((!(GameType & eGameIDDeathmatch) && (Type() == eGameIDDeathmatch)) ||
-							(!(GameType & eGameIDTeamDeathmatch) && (Type() == eGameIDTeamDeathmatch)) ||
-							(!(GameType & eGameIDArtefactHunt) && (Type() == eGameIDArtefactHunt)) ||
-							(!(GameType & eGameIDCaptureTheArtefact) && (Type() == eGameIDCaptureTheArtefact)) ||
-							(!(GameType & eGameIDFreeMP) && (Type() == eGameIDFreeMP))
+						if ((GameType == rpgtGameDeathmatch && Type() != eGameIDDeathmatch) ||
+							(GameType == rpgtGameTeamDeathmatch && Type() != eGameIDTeamDeathmatch) ||
+							(GameType == rpgtGameArtefactHunt && Type() != eGameIDArtefactHunt) || 
+							(GameType == rpgtGameCaptureTheArtefact && Type() != eGameIDCaptureTheArtefact)
 							)
 						{
 							continue;
 						};
-					}
-				};
+					};
+				}
+				else
+				{
+					if (GameType != EGameIDs(u16(-1)))
+					{
+						if ((Type() == eGameIDCaptureTheArtefact) && (GameType & eGameIDCaptureTheArtefact))
+						{
+							team = team - 1;
+							R_ASSERT2(((team >= 0) && (team < 4)) ||
+								(type != rptActorSpawn),
+								"Problem with CTA Team indexes. Propably you have added rpoint of team 0 for cta game type.");
+						}
+
+						// HACK. USE DM RP POINT FOR FREE MP
+						if (!(GameType & eGameIDTeamDeathmatch) && (Type() == eGameIDFreeMP))
+						{
+							if ((!(GameType & eGameIDDeathmatch) && (Type() == eGameIDDeathmatch)) ||
+								(!(GameType & eGameIDTeamDeathmatch) && (Type() == eGameIDTeamDeathmatch)) ||
+								(!(GameType & eGameIDArtefactHunt) && (Type() == eGameIDArtefactHunt)) ||
+								(!(GameType & eGameIDCaptureTheArtefact) && (Type() == eGameIDCaptureTheArtefact)) ||
+								(!(GameType & eGameIDFreeMP) && (Type() == eGameIDFreeMP))
+								)
+							{
+								continue;
+							};
+						}
+					};
+				}
 				switch (type)
 				{
 				case rptActorSpawn:
