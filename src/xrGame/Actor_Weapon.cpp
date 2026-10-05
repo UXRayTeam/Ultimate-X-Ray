@@ -287,7 +287,7 @@ void CActor::SelectBestWeapon(CObject* O)
 	}
 
 	//-------------------------------------------------
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < std::size(BestWeaponSlots); i++)
 	{
 		if (inventory().ItemFromSlot(BestWeaponSlots[i]))
 		{
