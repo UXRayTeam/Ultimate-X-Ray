@@ -659,8 +659,26 @@ float CGameFont::WidthOf(const char* str)
 		length = xr_strlen(str);
 		for (int i = 0; i < length; i++)
 		{
-			size += WidthOf((u8)str[i]);
-			size += spacing;
+			const unsigned char* s = (const unsigned char*)&str[i];
+
+			if (s[0] == 0xEE && (s[1] >= 0x80 && s[1] <= 0x82) &&
+				(s[2] >= 0x80 && s[2] <= 0xFF))
+			{
+				u32 cp = 0xE000 + (s[1] - 0x80 == 0 ? 0 : s[1] - 0x41) + (s[2] - 0x80);
+				if (g_FontManager->GamepadButtonMappings[cp])
+				{
+					Frect rect;
+					shared_str fn;
+					g_pGamePersistent->GetTextureParams(g_FontManager->GamepadButtonMappings[cp], rect, fn);
+					size += sizeOfImage(rect).x;
+					i += 2;
+				}
+			}
+			else
+			{
+				size += WidthOf((u8)str[i]);
+				size += spacing;
+			}
 		}
 
 		size -= spacing;
