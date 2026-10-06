@@ -8,7 +8,6 @@ function mp_options:__init() super()
 end
 
 function mp_options:__finalize()
-
 end
 
 function mp_options:InitControls(x, y, xml, handler)
@@ -16,10 +15,13 @@ function mp_options:InitControls(x, y, xml, handler)
 	self:SetAutoDelete	(true)
 	xml:InitWindow			("tab_options:main", 0, self)
 	
-	self.bk = xml:InitFrame("frame", self)
+	self.bk = xml:InitFrame("frame", self, false)
+	xml:InitFrame("tab_options:frame_1", self, false)
+	xml:InitFrame("tab_options:frame_2", self, false)
+	xml:InitFrame("tab_options:frame_3", self, false)
 	
-	xml:InitFrameLine("tab_options:vert_separator",		self)
-	xml:InitFrameLine("tab_options:vert_separator_2",	self)
+	xml:InitFrameLine("tab_options:vert_separator",		self, false)
+	xml:InitFrameLine("tab_options:vert_separator_2",	self, false)
 	xml:InitFrameLine("tab_options:cap_network_connection",	self)
 	xml:InitFrameLine("tab_options:cap_respawn_options",	self)
 	xml:InitFrameLine("tab_options:cap_server_list",		self)
@@ -41,11 +43,6 @@ function mp_options:InitControls(x, y, xml, handler)
 	xml:InitStatic("tab_options:cap_max_ping",	self)
 	
 	handler.check_public_server			= xml:InitCheck("tab_options:check_public_server", 			self)
---	handler.check_use_battleye			= xml:InitCheck("tab_options:check_use_battleye",			self)
---	handler.check_battleye_auto_update	= xml:InitCheck("tab_options:check_battleye_auto_update",	self)
-	
---	handler.check_verify_cdkey			= xml:InitCheck("tab_options:check_verify_cdkey", 			self)
-	
 	handler.check_spectator				= xml:InitCheck("tab_options:check_spectator",				self)
 	handler.check_allow_voting			= xml:InitCheck("tab_options:check_allow_voting",			self)
 	handler.spin_max_ping				= xml:InitSpinNum("tab_options:spin_max_ping",				self)
@@ -85,15 +82,10 @@ function mp_options:InitControls(x, y, xml, handler)
 	handler.check_pda_hunt				= xml:InitCheck("tab_options:check_pda_hunt",				self)	
 	
 	handler.spin_rate_of_change			= xml:InitSpinFlt("tab_options:spin_rate_of_change",		self)
---	handler.edit_rate_of_change:SetText("0.0")
 	
 	handler.spin_weather				= xml:InitComboBox("tab_options:spin_weather",				self)
 	
 	handler.check_spectator:SetDependControl(handler.spin_spectator)
---  handler.check_public_server:SetDependControl(handler.check_use_battleye)
-	
---	handler.check_public_server:SetDependControl(handler.check_verify_cdkey)	
-	
 end
 
 function mp_options:SetGameMode(mode, handler)

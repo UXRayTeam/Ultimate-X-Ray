@@ -47,11 +47,13 @@ public:
 	void NavigateToRoot();
 	const char* ReadValue(const char* path, int index);
 	const char* ReadAttribute(const char* path, int index, const char* attrib);
+	int ReadAttributeInt(const char* path, int index, const char* attrib);
+	bool ReadAttributeBool(const char* path, int index, const char* attrib);
 	u32 GetColor(const char* path, int index);
 
 	void				InitWindow(const char* path, int index, CUIWindow* pWnd);
-	CUIFrameWindow*		InitFrame(const char* path, CUIWindow* parent);
-	CUIFrameLineWnd*	InitFrameLine(const char* path, CUIWindow* parent);
+	CUIFrameWindow*		InitFrame(const char* path, CUIWindow* parent, bool fatal = true);
+	CUIFrameLineWnd*	InitFrameLine(const char* path, CUIWindow* parent, bool fatal = true);
 	CUIEditBox*			InitEditBox(const char* path, CUIWindow* parent);
 	CUIStatic*			InitStatic(const char* path, CUIWindow* parent);
 	CUIStackPanel*		InitStackPanel(const char* path, CUIWindow* parent);

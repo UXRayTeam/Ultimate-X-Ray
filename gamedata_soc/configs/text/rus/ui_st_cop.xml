@@ -282,4 +282,13 @@
 	<string id="ui_inv_seconds_short">
 		<text>сек.</text>
 	</string>
+	<string id="mm_mp_max_ping">
+		<text>макс. пинг</text>
+	</string>
+	<string id="mp_si_max_ping">
+		<text>макс. пинг</text>
+	</string>
+	<string id="modes">
+		<text>Режимы</text>
+	</string>
 </string_table>

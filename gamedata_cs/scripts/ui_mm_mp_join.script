@@ -13,25 +13,35 @@ function mp_join:__init() super()
 end
 
 function mp_join:__finalize()
-
 end
 
 function mp_join:InitControls(x, y, xml, handler)
 	self:SetAutoDelete		(true)
 
 	xml:InitWindow			("tab_client:main", 0, self)
-		
-	self.bk = xml:InitFrame	("frame", self)
-	xml:InitFrameLine		("tab_client:vert_separator",self)
+	if xml:NodeExist("frame", 0) then		
+		self.bk = xml:InitFrame	("frame", self)
+	end
+	if xml:NodeExist("tab_client:vert_separator", 0) then		
+		xml:InitFrameLine		("tab_client:vert_separator",self)
+	end
 
 	handler.server_list = xml:InitServerList("tab_client:server_list", self)
 	
-	xml:InitFrameLine("tab_client:cap_network_connection", self)
-	xml:InitFrameLine("tab_client:cap_server_list", self)
-	xml:InitFrameLine("tab_client:cap_filters",self)
+	xml:InitFrameLine("tab_client:cap_network_connection", self, false)
+	if not xml:InitFrameLine("tab_client:cap_server_list", self, false) then
+		xml:InitStatic("tab_client:cap_server_list", self)
+	end
+	if not xml:InitFrameLine("tab_client:cap_filters", self, false) then
+		xml:InitStatic("tab_client:cap_filters", self)
+	end
 	
-	xml:InitStatic("tab_client:rust_00",self)
-	xml:InitStatic("tab_client:rust_01",self)
+	if xml:NodeExist("tab_client:rust_00", 0) then
+		xml:InitStatic("tab_client:rust_00",self)
+	end
+	if xml:NodeExist("tab_client:rust_01", 0) then
+		xml:InitStatic("tab_client:rust_01",self)
+	end
 	
 	
 	local radio = xml:InitTab("tab_client:radio_tab_network_connection", self)
@@ -68,12 +78,7 @@ function mp_join:InitControls(x, y, xml, handler)
 	handler:Register(btn, "check_without_ff")
 	handler.filters.btn_check_without_ff = btn
 	btn:SetCheck(true)
---[[
-	btn = xml:InitCheck("tab_client:check_with_battleye", self)
-	handler:Register(btn, "check_with_battleye")
-	btn:SetCheck(false)
-	handler.filters.btn_check_with_battleye = btn
-	]]
+
 	btn = xml:InitCheck("tab_client:check_listen_servers", self)
 	handler:Register(btn, "check_listen_servers")
 	handler.filters.btn_check_listen_servers = btn

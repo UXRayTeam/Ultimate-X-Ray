@@ -113,6 +113,16 @@ const char* CScriptXmlInit::ReadAttribute(const char* path, int index, const cha
 	return m_xml.ReadAttrib(path, index, attrib, "");
 }
 
+int CScriptXmlInit::ReadAttributeInt(const char* path, int index, const char* attrib)
+{
+	return m_xml.ReadAttribInt(path, index, attrib, 0);
+}
+
+bool CScriptXmlInit::ReadAttributeBool(const char* path, int index, const char* attrib)
+{
+	return m_xml.ReadAttribBool(path, index, attrib, 0);
+}
+
 u32 CScriptXmlInit::GetColor(const char* path, int index)
 {
 	return CUIXmlInit::GetColor(m_xml, path, index, 0xFFFFFFFF);
@@ -124,20 +134,40 @@ void CScriptXmlInit::InitWindow(const char* path, int index, CUIWindow* pWnd)
 }
 
 
-CUIFrameWindow*	CScriptXmlInit::InitFrame(const char* path, CUIWindow* parent)
+CUIFrameWindow*	CScriptXmlInit::InitFrame(const char* path, CUIWindow* parent, bool fatal)
 {
+	if (!fatal && !m_xml.NavigateToNode(path, 0))
+	{
+		return nullptr;
+	}
 	CUIFrameWindow* pWnd = new CUIFrameWindow();
-	CUIXmlInit::InitFrameWindow(m_xml, path, 0, pWnd);
-	_attach_child(pWnd, parent);
+	if (!CUIXmlInit::InitFrameWindow(m_xml, path, 0, pWnd, fatal))
+	{
+		xr_delete(pWnd);
+	}
+	else
+	{
+		_attach_child(pWnd, parent);
+	}
 	return pWnd;
 }
 
 
-CUIFrameLineWnd* CScriptXmlInit::InitFrameLine(const char* path, CUIWindow* parent)
+CUIFrameLineWnd* CScriptXmlInit::InitFrameLine(const char* path, CUIWindow* parent, bool fatal)
 {
+	if (!fatal && !m_xml.NavigateToNode(path, 0))
+	{
+		return nullptr;
+	}
 	CUIFrameLineWnd* pWnd = new CUIFrameLineWnd();
-	CUIXmlInit::InitFrameLine(m_xml, path, 0, pWnd);
-	_attach_child(pWnd, parent);
+	if (!CUIXmlInit::InitFrameLine(m_xml, path, 0, pWnd, fatal))
+	{
+		xr_delete(pWnd);
+	}
+	else
+	{
+		_attach_child(pWnd, parent);
+	}
 	return pWnd;
 }
 
@@ -370,11 +400,21 @@ void CScriptXmlInit::script_register(lua_State *L){
 		.def("NavigateToRoot",			&CScriptXmlInit::NavigateToRoot)
 		.def("ReadValue",				&CScriptXmlInit::ReadValue)
 		.def("ReadAttribute",			&CScriptXmlInit::ReadAttribute)
+		.def("ReadAttributeInt",		&CScriptXmlInit::ReadAttributeInt)
+		.def("ReadAttributeBool",		&CScriptXmlInit::ReadAttributeBool)
 		.def("GetColor",				&CScriptXmlInit::GetColor)
 
 		.def("InitWindow",				&CScriptXmlInit::InitWindow)
 		.def("InitFrame",				&CScriptXmlInit::InitFrame)
+		.def("InitFrame",			+[](CScriptXmlInit* init, const char* path, CUIWindow* parent)
+        {
+			return init->InitFrame(path, parent);
+        })
 		.def("InitFrameLine",			&CScriptXmlInit::InitFrameLine)
+		.def("InitFrameLine",			+[](CScriptXmlInit* init, const char* path, CUIWindow* parent)
+        {
+			return init->InitFrameLine(path, parent);
+        })
 		.def("InitLabel",				&CScriptXmlInit::InitFrameLine)
 		.def("InitEditBox",				&CScriptXmlInit::InitEditBox)
 		.def("InitStatic",				&CScriptXmlInit::InitStatic)

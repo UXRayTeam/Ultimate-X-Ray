@@ -12,7 +12,6 @@ function mp_server:__init() super()
 end
 
 function mp_server:__finalize()
-
 end
 
 function mp_server:InitControls(x, y, xml, handler)
@@ -22,14 +21,21 @@ function mp_server:InitControls(x, y, xml, handler)
 	
 	-- SPIN BOXES	
 	handler.spin_max_players	= xml:InitSpinNum("tab_server:spin_max_players", self)
-	handler.spin_mode			= xml:InitSpinText("tab_server:spin_game_mode", self)
+--	handler.spin_mode			= xml:InitSpinText("tab_server:spin_game_mode", self)
+	handler.spin_mode			= xml:InitComboBox("tab_server:spin_game_mode", self)
 	handler:Register			(handler.spin_mode,"spin_game_mode")
 	local map_list				= xml:InitMapList("tab_server:map_list", self)
-	map_list:SetWeatherSelector(handler.spin_weather)
+	map_list:SetWeatherSelector	(handler.spin_weather)
 	map_list:SetModeSelector	(handler.spin_mode)
 
-	self.map_pic				= xml:InitStatic ("tab_server:static_map_pic", self)
-	xml:InitStatic				("tab_server:static_map_pic_fore", self)
+	local pic_under_background = xml:ReadAttributeBool("tab_server:static_map_pic", 0, "under_background")
+	if pic_under_background then
+		self.map_pic				= xml:InitStatic ("tab_server:static_map_pic", self)
+		xml:InitStatic				("tab_server:static_map_pic_fore", self)
+	else
+		xml:InitStatic				("tab_server:static_map_pic_fore", self)
+		self.map_pic				= xml:InitStatic ("tab_server:static_map_pic", self)
+	end
 	self.map_info				= xml:InitMapInfo("tab_server:cap_map_info", self)
 
 	map_list:SetMapPic			(self.map_pic)
@@ -41,6 +47,22 @@ function mp_server:InitControls(x, y, xml, handler)
 	xml:InitStatic				("tab_server:cap_password",		self)
 	xml:InitStatic				("tab_server:cap_game_mode",		self)
 	xml:InitStatic				("tab_server:cap_max_players",	self)
+	
+	if xml:NodeExist("tab_server:btn_left_static", 0) then		
+		xml:InitStatic				("tab_server:btn_left_static", self)
+	end
+	
+	if xml:NodeExist("tab_server:btn_right_static", 0) then		
+		xml:InitStatic				("tab_server:btn_right_static", self)
+	end
+	
+	if xml:NodeExist("tab_server:btn_up_static", 0) then		
+		xml:InitStatic				("tab_server:btn_up_static", self)
+	end
+	
+	if xml:NodeExist("tab_server:btn_down_static", 0) then		
+		xml:InitStatic				("tab_server:btn_down_static", self)
+	end
 	-- CHECK BOXES
 	handler.check_dedicated		= xml:InitCheck("tab_server:check_dedicated", self);
 

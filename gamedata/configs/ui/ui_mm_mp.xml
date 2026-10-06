@@ -46,35 +46,16 @@
 	        <texture>ui_inGame2_button</texture>
 	        <text font="letterica16" align="c" complex_mode="0">mm_mp_options</text>
 	    </button>
-	    <button x="366" y="0" width="108" height="24" id="demo">
-	        <texture>ui_inGame2_button</texture>
-	        <text font="letterica16" align="c" complex_mode="0">mm_mp_demo</text>
-	    </button>
 	</tab>
 
 #include "ui\ui_mm_mp_tabclient.xml"
 #include "ui\ui_mm_mp_tabserver.xml"
 #include "ui\ui_mm_mp_taboptions.xml"
-#include "ui\ui_mm_mp_tabdemo.xml"
-#include "ui\ui_mm_mp_tabprofile.xml"
 
-	<frame x="0" y="0" width="738" height="416">
-		<texture>ui_tablist_textbox</texture>
-	</frame>
-
-	<btn_create x="500" y="720" width="135" height="26">
+	<btn_create x="350" y="720" width="135" height="26">
 	    <text font="letterica18" align="c">mm_mp_create</text>
 	    <texture>ui_inGame2_Mp_bigbuttone</texture>
 	</btn_create>
-
-	<btn_play_demo x="500" y="720" width="135" height="26">
-	    <text font="letterica18" align="c">mm_mp_load_demo</text>
-	    <texture>ui_inGame2_Mp_bigbuttone</texture>
-	</btn_play_demo>
-
-	<delete_demo_button x="0" y="0" width="16" height="16">
-		<texture>ui_inGame2_Mp_bigbuttone</texture>
-	</delete_demo_button>
 
 	<btn_join x="500" y="720" width="135" height="26">
 	    <text font="letterica18" align="c">mm_mp_join</text>

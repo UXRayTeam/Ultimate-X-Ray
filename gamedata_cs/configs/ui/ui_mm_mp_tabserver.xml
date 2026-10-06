@@ -25,6 +25,12 @@
 		</spin_max_players>
 		<spin_game_mode x="150" y="90" width="275" height="21">
 			<options_item entry="mm_net_srv_gamemode" group="mm_mp_server"/>	
+			<text_color>
+				<e r="216" g="186" b="140"/>
+				<d color="ui_gray"/>
+			</text_color>
+			<list_font_s r="240" g="217" b="182"/>
+			<list_font	 r="216" g="186" b="140" font="letterica16"/>
 		</spin_game_mode>
 		
 		<edit_server_name x="150" y="40" width="275" height="21" max_symb_count="24">
@@ -41,7 +47,7 @@
 			<text font="letterica16" r="115" g="114" b="112" complex_mode="0" vert_align="c">mm_mp_dedicated</text>			
 		</check_dedicated>
 
-    <static_map_pic x="470" y="10" width="256" height="180">
+    <static_map_pic x="470" y="10" width="256" height="180" under_background="1">
       <texture width="256" height="175">ui\ui_noise</texture>
     </static_map_pic>
     <static_map_pic_fore x="470" y="8" width="256" height="180">

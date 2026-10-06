@@ -285,4 +285,13 @@
 	<string id="ui_inv_seconds_short">
 		<text>sec</text>
 	</string>
+	<string id="mm_mp_max_ping">
+		<text>Max ping</text>
+	</string>
+	<string id="mp_si_max_ping">
+		<text>Max ping</text>
+	</string>
+	<string id="modes">
+		<text>Modes</text>
+	</string>
 </string_table>
