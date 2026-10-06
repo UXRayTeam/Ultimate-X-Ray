@@ -21,6 +21,13 @@ void fix_texture_name(LPSTR fn)
 
 int get_texture_load_lod(const char* fn, size_t& w, size_t& h)
 {
+	if (strstr(fn, "intro\\") ||
+		strstr(fn, "ui\\") ||
+		strstr(fn, "map\\"))
+	{
+		return 0;
+	}
+
 	static auto& target_size = CCC_Integer::FastCommand("render.experemental.target_res", 8192, 256, D3D11_REQ_TEXTURE2D_U_OR_V_DIMENSION);
 	auto min_size = (int)std::min(w, h);
 

@@ -22,33 +22,50 @@ void fix_texture_name(LPSTR fn) {
 		*_ext = 0;
 }
 
-int get_texture_load_lod(const char* fn) {
+int get_texture_load_lod(const char* fn) 
+{
+	if (strstr(fn, "intro\\") || 
+		strstr(fn, "ui\\") ||
+		strstr(fn, "map\\"))
+	{
+		return 0;
+	}
 	auto& sect = pSettings->r_section("reduce_lod_texture_list");
 
-	for (const auto& data : sect.Data) {
-		if (strstr(fn, data.first.c_str())) {
-			if (psTextureLOD < 1) {
+	for (const auto& data : sect.Data) 
+	{
+		if (strstr(fn, data.first.c_str())) 
+		{
+			if (psTextureLOD < 1) 
+			{
 				return 0;
 			}
-			else {
-				if (psTextureLOD < 3) {
+			else 
+			{
+				if (psTextureLOD < 3) 
+				{
 					return 1;
 				}
-				else {
+				else 
+				{
 					return 2;
 				}
 			}
 		}
 	}
 
-	if (psTextureLOD < 2) {
+	if (psTextureLOD < 2) 
+	{
 		return 0;
 	}
-	else {
-		if (psTextureLOD < 4) {
+	else 
+	{
+		if (psTextureLOD < 4) 
+		{
 			return 1;
 		}
-		else {
+		else 
+		{
 			return 2;
 		}
 	}
