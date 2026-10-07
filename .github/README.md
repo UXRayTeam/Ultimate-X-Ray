@@ -12,7 +12,7 @@
   </p>
 
   <p>
-    <a href="https://github.com/UXRayTeam">
+    <a href="https://github.com/uxray-team">
       <img src="../src/Assets/Splash_long.png" alt="Ultimate X-Ray" />
     </a>
   </p>
@@ -21,35 +21,35 @@
     <a href="../LICENSE.md">
       <img src="https://img.shields.io/badge/License-Non--commercial-red.svg" alt="License" />
     </a>
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/releases/latest">
-      <img src="https://img.shields.io/github/v/release/UXRayTeam/Ultimate-X-Ray?include_prereleases&label=Release" alt="Latest release" />
+    <a href="https://github.com/uxray-team/ultimate-xray/releases/latest">
+      <img src="https://img.shields.io/github/v/release/uxray-team/ultimate-xray?include_prereleases&label=Release" alt="Latest release" />
     </a>
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/releases">
-      <img src="https://img.shields.io/github/downloads/UXRayTeam/Ultimate-X-Ray/total?label=Downloads" alt="All downloads" />
+    <a href="https://github.com/uxray-team/ultimate-xray/releases">
+      <img src="https://img.shields.io/github/downloads/uxray-team/ultimate-xray/total?label=Downloads" alt="All downloads" />
     </a>
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/graphs/contributors">
-      <img src="https://img.shields.io/github/contributors/UXRayTeam/Ultimate-X-Ray.svg?label=Contributors" alt="All Contributors" />
-    </a>
-    <br />
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-engine.yml">
-      <img src="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-engine.yml/badge.svg" alt="Build engine" />
-    </a>
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-server.yml">
-      <img src="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-server.yml/badge.svg" alt="Build server" />
+    <a href="https://github.com/uxray-team/ultimate-xray/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/uxray-team/ultimate-xray.svg?label=Contributors" alt="All Contributors" />
     </a>
     <br />
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-editors.yml">
-      <img src="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-editors.yml/badge.svg" alt="Build editors" />
+    <a href="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-engine.yml">
+      <img src="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-engine.yml/badge.svg" alt="Build engine" />
     </a>
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-utilities.yml">
-      <img src="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-utilities.yml/badge.svg" alt="Build utilities" />
-    </a>
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-plugins.yml">
-      <img src="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/build-plugins.yml/badge.svg" alt="Build plugins" />
+    <a href="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-server.yml">
+      <img src="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-server.yml/badge.svg" alt="Build server" />
     </a>
     <br />
-    <a href="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/nonunity-build.yml">
-      <img src="https://github.com/UXRayTeam/Ultimate-X-Ray/actions/workflows/nonunity-build.yml/badge.svg" alt="Non-Unity build" />
+    <a href="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-editors.yml">
+      <img src="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-editors.yml/badge.svg" alt="Build editors" />
+    </a>
+    <a href="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-utilities.yml">
+      <img src="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-utilities.yml/badge.svg" alt="Build utilities" />
+    </a>
+    <a href="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-plugins.yml">
+      <img src="https://github.com/uxray-team/ultimate-xray/actions/workflows/build-plugins.yml/badge.svg" alt="Build plugins" />
+    </a>
+    <br />
+    <a href="https://github.com/uxray-team/ultimate-xray/actions/workflows/nonunity-build.yml">
+      <img src="https://github.com/uxray-team/ultimate-xray/actions/workflows/nonunity-build.yml/badge.svg" alt="Non-Unity build" />
     </a>
   </p>
 </div>
@@ -60,20 +60,20 @@ __Ultimate X-Ray__ is fork of __IX-Ray 1.6__ engine that aims to be more focused
 
 ## Quick start
 
-Latest release of the engine can be downloaded on the [releases page](https://github.com/UXRayTeam/Ultimate-X-Ray/releases)
+Latest release of the engine can be downloaded on the [releases page](https://github.com/uxray-team/ultimate-xray/releases)
 
 ## Ready-made builds
 
 | Platform | Build | System | Files | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| Call of Pripyat | Gamer | Windows x64 | [Engine+Assets](https://github.com/UXRayTeam/Ultimate-X-Ray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-game-cop.zip) | Ready-made engine build for players or necessary for the release of modifications. Archive contains the engine and assets for running the game |
-| Call of Pripyat | Developer | Windows x64 | [Engine+Assets](https://github.com/UXRayTeam/Ultimate-X-Ray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-develop-cop.zip) | Ready-made engine build for developers, necessary for convenient modification development. Archive contains the engine and assets for launching the game |
-| Clear Sky | Gamer | Windows x64 | [Engine+Assets](https://github.com/UXRayTeam/Ultimate-X-Ray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-game-cs.zip) | Ready-made engine build for players or necessary for the release of modifications. Archive contains the engine and assets for running the game |
-| Clear Sky | Developer | Windows x64 | [Engine+Assets](https://github.com/UXRayTeam/Ultimate-X-Ray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-develop-cs.zip) | Ready-made engine build for developers, necessary for convenient modification development. Archive contains the engine and assets for launching the game |
-| Shadow of Chernobyl | Gamer | Windows x64 | [Engine+Assets](https://github.com/UXRayTeam/Ultimate-X-Ray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-game-soc.zip) | Ready-made engine build for players or necessary for the release of modifications. Archive contains the engine and assets for running the game |
-| Shadow of Chernobyl | Developer | Windows x64 | [Engine+Assets](https://github.com/UXRayTeam/Ultimate-X-Ray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-develop-soc.zip) | Ready-made engine build for developers, necessary for convenient modification development. Archive contains the engine and assets for launching the game |
+| Call of Pripyat | Gamer | Windows x64 | [Engine+Assets](https://github.com/uxray-team/ultimate-xray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-game-cop.zip) | Ready-made engine build for players or necessary for the release of modifications. Archive contains the engine and assets for running the game |
+| Call of Pripyat | Developer | Windows x64 | [Engine+Assets](https://github.com/uxray-team/ultimate-xray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-develop-cop.zip) | Ready-made engine build for developers, necessary for convenient modification development. Archive contains the engine and assets for launching the game |
+| Clear Sky | Gamer | Windows x64 | [Engine+Assets](https://github.com/uxray-team/ultimate-xray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-game-cs.zip) | Ready-made engine build for players or necessary for the release of modifications. Archive contains the engine and assets for running the game |
+| Clear Sky | Developer | Windows x64 | [Engine+Assets](https://github.com/uxray-team/ultimate-xray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-develop-cs.zip) | Ready-made engine build for developers, necessary for convenient modification development. Archive contains the engine and assets for launching the game |
+| Shadow of Chernobyl | Gamer | Windows x64 | [Engine+Assets](https://github.com/uxray-team/ultimate-xray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-game-soc.zip) | Ready-made engine build for players or necessary for the release of modifications. Archive contains the engine and assets for running the game |
+| Shadow of Chernobyl | Developer | Windows x64 | [Engine+Assets](https://github.com/uxray-team/ultimate-xray/releases/download/r1.4/ixray-1.6-r1.4-engine-x64-develop-soc.zip) | Ready-made engine build for developers, necessary for convenient modification development. Archive contains the engine and assets for launching the game |
 
-You can read about the differences in [FAQ](https://github.com/UXRayTeam/Ultimate-X-Ray/blob/default/doc/faq.md#what-is-the-difference-between-the-game-player-and-developer-builds)
+You can read about the differences in [FAQ](https://github.com/uxray-team/ultimate-xray/blob/default/doc/faq.md#what-is-the-difference-between-the-game-player-and-developer-builds)
 
 ## Features
 
@@ -95,12 +95,12 @@ You can read about the differences in [FAQ](https://github.com/UXRayTeam/Ultimat
     - Cubemap 
     - Anti-aliasing: FXAA, SMAA, TAA
     - Supported __BC7__ compression format
-- [Supported __TTF__ font system](https://github.com/UXRayTeam/Ultimate-X-Ray/wiki/Fonts)
+- [Supported __TTF__ font system](https://github.com/uxray-team/ultimate-xray/wiki/Fonts)
 - Supported in-game debugging tools
 - [Extended opportunities for modmakers](ixray-team.github.io/ixray-1.6-stcop/)
 - [Debugging tools support: __ASAN__, __RenderDoc__ and __LuaPanda__](https://ixray-team.github.io/ixray-1.6-stcop/main/integrations.html)
-- [Extended __UI__ features](https://github.com/UXRayTeam/Ultimate-X-Ray/wiki/UI-%D0%9E%D0%B1%D1%89%D0%B5%D0%B5)
-- [Extended __Lua__ features](https://github.com/UXRayTeam/Ultimate-X-Ray/wiki#%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D1%8B-lua)
+- [Extended __UI__ features](https://github.com/uxray-team/ultimate-xray/wiki/UI-%D0%9E%D0%B1%D1%89%D0%B5%D0%B5)
+- [Extended __Lua__ features](https://github.com/uxray-team/ultimate-xray/wiki#%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D1%8B-lua)
 
 - Addon system
 - Modular particles
@@ -155,7 +155,7 @@ Download the repository firstly:
 
 ```sh
 # From GitHub
-git clone https://github.com/UXRayTeam/Ultimate-X-Ray.git
+git clone https://github.com/uxray-team/ultimate-xray.git
 ```
 
 > [!IMPORTANT]
