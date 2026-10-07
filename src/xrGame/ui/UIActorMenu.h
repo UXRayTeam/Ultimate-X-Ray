@@ -190,6 +190,9 @@ protected:
 
 	virtual void				TradeShowMessage					(s64 money_actor, s64 money_patner);
 
+	virtual void				SwitchToLeftInventory				();
+	virtual void				SwitchToRightInventory				();
+
 public:
 								CUIActorMenu						();
 	virtual						~CUIActorMenu						();

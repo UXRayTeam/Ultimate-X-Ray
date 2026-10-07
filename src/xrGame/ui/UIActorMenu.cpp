@@ -1023,3 +1023,49 @@ void CUIActorMenu::UpdateActorWeightBarTooltip()
 	// ProgressBar is not CUIStatic: must arm g_statHint draw flag each frame (see CUIStatic::Draw).
 	g_statHint->Draw_();
 }
+
+void CUIActorMenu::SwitchToLeftInventory()
+{
+	switch (m_currMenuMode)
+	{
+		case mmDeadBodySearch:
+		{
+			SetAreaSelectionTo(GetPartnerList());
+			GetPartnerList()->SetControllerFocusIn({ 0,0,1,1 });
+			break;
+		}
+		case mmTrade:
+		{
+			SetAreaSelectionTo(GetTradePartnerBagList());
+			GetTradePartnerBagList()->SetControllerFocusIn({ 0,0,1,1 });
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+}
+
+void CUIActorMenu::SwitchToRightInventory()
+{
+	switch (m_currMenuMode)
+	{
+		case mmDeadBodySearch:
+		{
+			SetAreaSelectionTo(GetActorList());
+			GetActorList()->SetControllerFocusIn({ 0,0,1,1 });
+			break;
+		}
+		case mmTrade:
+		{
+			SetAreaSelectionTo(GetTradeActorBagList());
+			GetTradeActorBagList()->SetControllerFocusIn({ 0,0,1,1 });
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+}

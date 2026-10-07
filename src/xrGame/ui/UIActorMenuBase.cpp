@@ -1724,6 +1724,12 @@ void CUIActorMenuBase::UpdateGamepadLegend()
 		amActions->Show(!m_UIPropertiesBox->IsShown());
 	}
 
+	CUIWindow* amQuickSwitch = m_gamepad_legend->FindChild("am_quick_inventory_switch");
+	if (amQuickSwitch)
+	{
+		amQuickSwitch->Show(m_currMenuMode == mmDeadBodySearch || m_currMenuMode == mmTrade);
+	}
+
 	CUIWindow* amUse = m_gamepad_legend->FindChild("am_use");
 	if (amUse)
 	{
@@ -2029,6 +2035,22 @@ bool CUIActorMenuBase::OnGamepadKeyAction(int id, EUIMessages gamepad_action)
 			if (GetInventoryOwner()->IsTalking())
 			{
 				CurrentGameUI()->TalkMenu->UITalkDialogWnd->Show();
+			}
+			return true;
+		}
+		else if (is_binded(kUI_TAB_LEFT, id))
+		{
+			if (!any_binded_key_for_action_pressed_c(kUI_TAB_RIGHT))
+			{
+				SwitchToLeftInventory();
+			}
+			return true;
+		}
+		else if (is_binded(kUI_TAB_RIGHT, id))
+		{
+			if (!any_binded_key_for_action_pressed_c(kUI_TAB_LEFT))
+			{
+				SwitchToRightInventory();
 			}
 			return true;
 		}
@@ -2879,4 +2901,50 @@ bool CUIActorMenuBase::SetInfoCurUpgrade(Upgrade_type* upgrade_type, CInventoryI
 		}
 	}
 	return res;
+}
+
+void CUIActorMenuBase::SwitchToLeftInventory()
+{
+	switch (m_currMenuMode)
+	{
+		case mmDeadBodySearch:
+		{
+			SetAreaSelectionTo(GetActorList());
+			GetActorList()->SetControllerFocusIn({ 0,0,1,1 });
+			break;
+		}
+		case mmTrade:
+		{
+			SetAreaSelectionTo(GetTradeActorBagList());
+			GetTradeActorBagList()->SetControllerFocusIn({ 0,0,1,1 });
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+}
+
+void CUIActorMenuBase::SwitchToRightInventory()
+{
+	switch (m_currMenuMode)
+	{
+		case mmDeadBodySearch:
+		{
+			SetAreaSelectionTo(GetPartnerList());
+			GetPartnerList()->SetControllerFocusIn({ 0,0,1,1 });
+			break;
+		}
+		case mmTrade:
+		{
+			SetAreaSelectionTo(GetTradePartnerBagList());
+			GetTradePartnerBagList()->SetControllerFocusIn({ 0,0,1,1 });
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
 }

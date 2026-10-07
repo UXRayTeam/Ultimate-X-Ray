@@ -22,6 +22,10 @@
 			<text font="graffiti19" vert_align="c">ui_am_info_soc</text>
 		</auto_static>
 		<auto_static x="0" y="0" width="22" height="30">
+			<window_name>am_quick_inventory_switch</window_name>
+			<text font="graffiti19" vert_align="c">ui_am_quick_inventory_switch</text>
+		</auto_static>
+		<auto_static x="0" y="0" width="22" height="30">
 			<window_name>am_action</window_name>
 			<text font="graffiti19" vert_align="c">ui_am_take_all</text>
 		</auto_static>

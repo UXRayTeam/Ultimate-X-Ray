@@ -252,6 +252,9 @@ protected:
 	bool						AnyInfoWindowOpen			() const;
 			void				CheckSelectors				();
 
+	virtual void				SwitchToLeftInventory		();
+	virtual void				SwitchToRightInventory		();
+
 	u8							GetActiveSortSystemIndex	() const;
 	CUITabControl*				GetSortTabControl			(ESortTabsLayoutSlot slot) const;
 	CUITabControl*				GetSortTabControl			(EInventorySortSystem system, ESortTabsLayoutSlot slot) const;
