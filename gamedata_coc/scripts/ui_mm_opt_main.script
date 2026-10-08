@@ -269,6 +269,8 @@ function options_dialog:OnTabChange()
 		if self.tab_input:GetActiveId() == "keyboard_mouse" then
 			self.dlg_controls:Show(true)
 		else
+			self:DeselectAllTabElements(self.dlg_controls_gamepad)
+			self:OnElementSetSelected(self.dlg_controls_gamepad, self.focusIndex, true)
 			self.dlg_controls_gamepad:Show(true)
 		end
 	end
