@@ -1895,7 +1895,7 @@ bool CUIActorMenuBase::OnGamepadKeyAction(int id, EUIMessages gamepad_action)
 	{
 		if (m_ui_navigation_selection)
 		{
-			if (is_binded(kUI_BACK, id) || is_binded(kQUIT, id))
+			if (is_binded(kUI_BACK, id) || is_binded(kQUIT, id) || is_binded(kINVENTORY, id))
 			{
 				if (m_bShowInfoWnds)
 				{
