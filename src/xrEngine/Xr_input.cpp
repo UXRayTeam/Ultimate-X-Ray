@@ -88,14 +88,9 @@ void CInput::MouseReleased(int button)
 	mouseState[button] = 0;
 }
 
-void CInput::KeyboardButtonUpdate(SDL_Scancode scancode, bool IsPressed)
+void CInput::KeyboardButtonUpdate(int scancode, bool IsPressed)
 {
 	KBState[scancode] = IsPressed;
-}
-
-void CInput::GamepadButtonUpdate(int SDLCode, bool IsPressed)
-{
-	GPState[SDLCode] = IsPressed;
 }
 
 #define DEADZONE_RADIUS_UI 0.375f
@@ -112,34 +107,42 @@ void CInput::LeftAxisUpdate(bool IsX, float value)
 
 	if (LeftAxis.x < -DEADZONE_RADIUS_UI)
 	{
-		pInput->GamepadButtonUpdate(DIK_LSTICK_LEFT, true);
+		pInput->KeyboardButtonUpdate(UXR_GAMEPAD_LSTICK_LEFT, true);
 	}
 	else if (LeftAxis.x > DEADZONE_RADIUS_UI)
 	{
-		pInput->GamepadButtonUpdate(DIK_LSTICK_RIGHT, true);
+		pInput->KeyboardButtonUpdate(UXR_GAMEPAD_LSTICK_RIGHT, true);
 	}
 	else
 	{
-		if (GPState[DIK_LSTICK_LEFT])
-			pInput->GamepadButtonUpdate(DIK_LSTICK_LEFT, false);
-		if (GPState[DIK_LSTICK_RIGHT])
-			pInput->GamepadButtonUpdate(DIK_LSTICK_RIGHT, false);
+		if (KBState[UXR_GAMEPAD_LSTICK_LEFT])
+		{
+			pInput->KeyboardButtonUpdate(UXR_GAMEPAD_LSTICK_LEFT, false);
+		}
+		if (KBState[UXR_GAMEPAD_LSTICK_RIGHT])
+		{
+			pInput->KeyboardButtonUpdate(UXR_GAMEPAD_LSTICK_RIGHT, false);
+		}
 	}
 
 	if (LeftAxis.y < -DEADZONE_RADIUS_UI)
 	{
-		pInput->GamepadButtonUpdate(DIK_LSTICK_DOWN, true);
+		pInput->KeyboardButtonUpdate(UXR_GAMEPAD_LSTICK_DOWN, true);
 	}
 	else if (LeftAxis.y > DEADZONE_RADIUS_UI)
 	{
-		pInput->GamepadButtonUpdate(DIK_LSTICK_UP, true);
+		pInput->KeyboardButtonUpdate(UXR_GAMEPAD_LSTICK_UP, true);
 	}
 	else
 	{
-		if (GPState[DIK_LSTICK_DOWN])
-			pInput->GamepadButtonUpdate(DIK_LSTICK_DOWN, false);
-		if (GPState[DIK_LSTICK_UP])
-			pInput->GamepadButtonUpdate(DIK_LSTICK_UP, false);
+		if (KBState[UXR_GAMEPAD_LSTICK_DOWN])
+		{
+			pInput->KeyboardButtonUpdate(UXR_GAMEPAD_LSTICK_DOWN, false);
+		}
+		if (KBState[UXR_GAMEPAD_LSTICK_UP])
+		{
+			pInput->KeyboardButtonUpdate(UXR_GAMEPAD_LSTICK_UP, false);
+		}
 	}
 }
 
@@ -156,34 +159,42 @@ void CInput::RightAxisUpdate(bool IsX, float value)
 
 	if (RightAxis.x < -DEADZONE_RADIUS_UI)
 	{
-		pInput->GamepadButtonUpdate(DIK_RSTICK_LEFT, true);
+		pInput->KeyboardButtonUpdate(UXR_GAMEPAD_RSTICK_LEFT, true);
 	}
 	else if (RightAxis.x > DEADZONE_RADIUS_UI)
 	{
-		pInput->GamepadButtonUpdate(DIK_RSTICK_RIGHT, true);
+		pInput->KeyboardButtonUpdate(UXR_GAMEPAD_RSTICK_RIGHT, true);
 	}
 	else
 	{
-		if (GPState[DIK_RSTICK_LEFT])
-			pInput->GamepadButtonUpdate(DIK_RSTICK_LEFT, false);
-		if (GPState[DIK_RSTICK_RIGHT])
-			pInput->GamepadButtonUpdate(DIK_RSTICK_RIGHT, false);
+		if (KBState[UXR_GAMEPAD_RSTICK_LEFT])
+		{
+			pInput->KeyboardButtonUpdate(UXR_GAMEPAD_RSTICK_LEFT, false);
+		}
+		if (KBState[UXR_GAMEPAD_RSTICK_RIGHT])
+		{
+			pInput->KeyboardButtonUpdate(UXR_GAMEPAD_RSTICK_RIGHT, false);
+		}
 	}
 
 	if (RightAxis.y < -DEADZONE_RADIUS_UI)
 	{
-		pInput->GamepadButtonUpdate(DIK_RSTICK_UP, true);
+		pInput->KeyboardButtonUpdate(UXR_GAMEPAD_RSTICK_UP, true);
 	}
 	else if (RightAxis.y > DEADZONE_RADIUS_UI)
 	{
-		pInput->GamepadButtonUpdate(DIK_RSTICK_DOWN, true);
+		pInput->KeyboardButtonUpdate(UXR_GAMEPAD_RSTICK_DOWN, true);
 	}
 	else
 	{
-		if (GPState[DIK_RSTICK_DOWN])
-			pInput->GamepadButtonUpdate(DIK_RSTICK_DOWN, false);
-		if (GPState[DIK_RSTICK_UP])
-			pInput->GamepadButtonUpdate(DIK_RSTICK_UP, false);
+		if (KBState[UXR_GAMEPAD_RSTICK_DOWN])
+		{
+			pInput->KeyboardButtonUpdate(UXR_GAMEPAD_RSTICK_DOWN, false);
+		}
+		if (KBState[UXR_GAMEPAD_RSTICK_UP])
+		{
+			pInput->KeyboardButtonUpdate(UXR_GAMEPAD_RSTICK_UP, false);
+		}
 	}
 }
 
@@ -211,30 +222,56 @@ void CInput::TouchpadUpdate(Fvector2 value)
 	touchpadMoved = true;
 }
 
+#define MOUSE_1		(SDL_SCANCODE_COUNT + 100)
+#define MOUSE_8		(SDL_SCANCODE_COUNT + 107)
+
 void CInput::KeyboardUpdate()
 {
 	for (size_t i = 0; i < COUNT_KB_BUTTONS; i++)
 	{
+		bool isGamepad = i >= SDL_SCANCODE_COUNT && i < MOUSE_1;
 		bool Pressed = !!KBState[i];
 		if (KBState[i] != old_KBState[i])
 		{
 			old_KBState[i] = KBState[i];
 			if (Pressed)
 			{
-				cbStack.back()->IR_OnKeyboardPress((int)i);
+				if (isGamepad)
+				{
+					cbStack.back()->IR_GamepadKeyPress(i);
+				}
+				else
+				{
+					cbStack.back()->IR_OnKeyboardPress(i);
+				}
 			}
 			else
 			{
-				cbStack.back()->IR_OnKeyboardRelease((int)i);
+				if (isGamepad)
+				{
+					cbStack.back()->IR_GamepadKeyRelease(i);
+				}
+				else
+				{
+					cbStack.back()->IR_OnKeyboardRelease(i);
+				}
 			}
 		}
 	}
 
 	for (int i = 0; i < COUNT_KB_BUTTONS; i++)
 	{
+		bool isGamepad = i >= SDL_SCANCODE_COUNT && i < MOUSE_1;
 		if (KBState[i])
 		{
-			cbStack.back()->IR_OnKeyboardHold((int)i);
+			if (isGamepad)
+			{
+				cbStack.back()->IR_GamepadKeyHold(i);
+			}
+			else
+			{
+				cbStack.back()->IR_OnKeyboardHold(i);
+			}
 		}
 	}
 }
@@ -258,32 +295,6 @@ void CInput::GamepadUpdate()
 	KeyHolder->IR_GamepadUpdateStick(1, RightAxis);
 
 	KeyHolder->IR_GamepadUpdateStick(2, AdaptiveTrigger);
-
-	for (size_t i = 0; i < COUNT_GP_BUTTONS; i++)
-	{
-		bool Pressed = !!GPState[i];
-		if (GPState[i] != old_GPState[i])
-		{
-			old_GPState[i] = GPState[i];
-
-			if (Pressed)
-			{
-				KeyHolder->IR_GamepadKeyPress((int)i);
-			}
-			else
-			{
-				KeyHolder->IR_GamepadKeyRelease((int)i);
-			}
-		}
-	}
-
-	for (int i = 0; i < COUNT_GP_BUTTONS; i++)
-	{
-		if (GPState[i])
-		{
-			KeyHolder->IR_GamepadKeyHold((int)i);
-		}
-	}
 }
 
 const xr_map<int, char> russian_lookup_key_table = {
@@ -344,17 +355,6 @@ bool CInput::get_dik_name(int dik, LPSTR dest_str, int dest_sz)
 	dest_str[1] = 0;
 
 	return true;
-}
-
-#define MOUSE_1		(SDL_SCANCODE_COUNT + 100)
-#define MOUSE_8		(SDL_SCANCODE_COUNT + 107)
-
-bool CInput::iGetAsyncGamepadKeyState( int dik )
-{
-	if(dik<COUNT_GP_BUTTONS)
-		return !!GPState[dik];
-
-	return false;
 }
 
 bool CInput::iGetAsyncKeyState( int dik )

@@ -521,33 +521,33 @@ void key_binding_registrator::script_register(lua_State *L)
         class_<key_binding_registrator_gamepad >("gamepad_keys")
             .enum_("gamepad_keys")
 			[
-                value("BUTTON_A", int(SDL_GAMEPAD_BUTTON_SOUTH)),
-                value("BUTTON_B", int(SDL_GAMEPAD_BUTTON_EAST)),
-                value("BUTTON_X", int(SDL_GAMEPAD_BUTTON_WEST)),
-                value("BUTTON_Y", int(SDL_GAMEPAD_BUTTON_NORTH)),
-                value("BUTTON_BACK", int(SDL_GAMEPAD_BUTTON_BACK)),
-                value("BUTTON_START", int(SDL_GAMEPAD_BUTTON_START)),
-                value("BUTTON_LSTICK", int(SDL_GAMEPAD_BUTTON_LEFT_STICK)),
-                value("BUTTON_RSTICK", int(SDL_GAMEPAD_BUTTON_RIGHT_STICK)),
-                value("BUTTON_LSHOULDER", int(SDL_GAMEPAD_BUTTON_LEFT_SHOULDER)),
-                value("BUTTON_RSHOULDER", int(SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER)),
-                value("BUTTON_DPAD_UP", int(SDL_GAMEPAD_BUTTON_DPAD_UP)),
-                value("BUTTON_DPAD_DOWN", int(SDL_GAMEPAD_BUTTON_DPAD_DOWN)),
-                value("BUTTON_DPAD_LEFT", int(SDL_GAMEPAD_BUTTON_DPAD_LEFT)),
-                value("BUTTON_DPAD_RIGHT", int(SDL_GAMEPAD_BUTTON_DPAD_RIGHT)),
+                value("BUTTON_A", int(UXR_GAMEPAD_A)),
+                value("BUTTON_B", int(UXR_GAMEPAD_B)),
+                value("BUTTON_X", int(UXR_GAMEPAD_X)),
+                value("BUTTON_Y", int(UXR_GAMEPAD_Y)),
+                value("BUTTON_BACK", int(UXR_GAMEPAD_BACK)),
+                value("BUTTON_START", int(UXR_GAMEPAD_START)),
+                value("BUTTON_LSTICK", int(UXR_GAMEPAD_LS_CLICK)),
+                value("BUTTON_RSTICK", int(UXR_GAMEPAD_RS_CLICK)),
+                value("BUTTON_LSHOULDER", int(UXR_GAMEPAD_LB)),
+                value("BUTTON_RSHOULDER", int(UXR_GAMEPAD_RB)),
+                value("BUTTON_DPAD_UP", int(UXR_GAMEPAD_DPAD_UP)),
+                value("BUTTON_DPAD_DOWN", int(UXR_GAMEPAD_DPAD_DOWN)),
+                value("BUTTON_DPAD_LEFT", int(UXR_GAMEPAD_DPAD_LEFT)),
+                value("BUTTON_DPAD_RIGHT", int(UXR_GAMEPAD_DPAD_RIGHT)),
 
-                value("BUTTON_LTRIGGER", int(DIK_LTRIGGER)),
-                value("BUTTON_RTRIGGER", int(DIK_RTRIGGER)),
+                value("BUTTON_LTRIGGER", int(UXR_GAMEPAD_LTRIGGER)),
+                value("BUTTON_RTRIGGER", int(UXR_GAMEPAD_RTRIGGER)),
 
-                value("BUTTON_LSTICK_UP", int(DIK_LSTICK_UP)),
-                value("BUTTON_LSTICK_DOWN", int(DIK_LSTICK_DOWN)),
-                value("BUTTON_LSTICK_LEFT", int(DIK_LSTICK_LEFT)),
-                value("BUTTON_LSTICK_RIGHT", int(DIK_LSTICK_RIGHT)),
+                value("BUTTON_LSTICK_UP", int(UXR_GAMEPAD_LSTICK_UP)),
+                value("BUTTON_LSTICK_DOWN", int(UXR_GAMEPAD_LSTICK_DOWN)),
+                value("BUTTON_LSTICK_LEFT", int(UXR_GAMEPAD_LSTICK_LEFT)),
+                value("BUTTON_LSTICK_RIGHT", int(UXR_GAMEPAD_LSTICK_RIGHT)),
 
-                value("BUTTON_RSTICK_UP", int(DIK_RSTICK_UP)),
-                value("BUTTON_RSTICK_DOWN", int(DIK_RSTICK_DOWN)),
-                value("BUTTON_RSTICK_LEFT", int(DIK_RSTICK_LEFT)),
-                value("BUTTON_RSTICK_RIGHT", int(DIK_RSTICK_RIGHT))
+                value("BUTTON_RSTICK_UP", int(UXR_GAMEPAD_RSTICK_UP)),
+                value("BUTTON_RSTICK_DOWN", int(UXR_GAMEPAD_RSTICK_DOWN)),
+                value("BUTTON_RSTICK_LEFT", int(UXR_GAMEPAD_RSTICK_LEFT)),
+                value("BUTTON_RSTICK_RIGHT", int(UXR_GAMEPAD_RSTICK_RIGHT))
             ]
 
 	];

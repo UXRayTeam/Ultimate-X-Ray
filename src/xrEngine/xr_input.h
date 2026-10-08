@@ -1,21 +1,50 @@
 #ifndef __XR_INPUT__
 #define __XR_INPUT__
 
-// fake buttons
-#define DIK_LTRIGGER (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 0)
-#define DIK_RTRIGGER (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 1)
+enum
+{
+	UXR_GAMEPAD_A = SDL_SCANCODE_COUNT,
+	UXR_GAMEPAD_B,
+	UXR_GAMEPAD_X,
+	UXR_GAMEPAD_Y,
+	UXR_GAMEPAD_BACK,
+	UXR_GAMEPAD_GUIDE,
+	UXR_GAMEPAD_START,
+	UXR_GAMEPAD_LS_CLICK,
+	UXR_GAMEPAD_RS_CLICK,
+	UXR_GAMEPAD_LB,
+	UXR_GAMEPAD_RB,
+	UXR_GAMEPAD_DPAD_UP,
+	UXR_GAMEPAD_DPAD_DOWN,
+	UXR_GAMEPAD_DPAD_LEFT,
+	UXR_GAMEPAD_DPAD_RIGHT,
+	UXR_GAMEPAD_MICROPHONE,
+	UXR_GAMEPAD_RIGHT_PADDLE1,
+	UXR_GAMEPAD_LEFT_PADDLE1,
+	UXR_GAMEPAD_RIGHT_PADDLE2,
+	UXR_GAMEPAD_LEFT_PADDLE2,
+	UXR_GAMEPAD_TOUCHPAD,
+	UXR_GAMEPAD_MISC2,
+	UXR_GAMEPAD_MISC3,
+	UXR_GAMEPAD_MISC4,
+	UXR_GAMEPAD_MISC5,
+	UXR_GAMEPAD_MISC6,
 
-#define DIK_LSTICK_UP (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 2)
-#define DIK_LSTICK_DOWN (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 3)
-#define DIK_LSTICK_LEFT (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 4)
-#define DIK_LSTICK_RIGHT (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 5)
+	UXR_GAMEPAD_LTRIGGER,
+	UXR_GAMEPAD_RTRIGGER,
 
-#define DIK_RSTICK_UP (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 6)
-#define DIK_RSTICK_DOWN (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 7)
-#define DIK_RSTICK_LEFT (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 8)
-#define DIK_RSTICK_RIGHT (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 9)
+	UXR_GAMEPAD_LSTICK_UP,
+	UXR_GAMEPAD_LSTICK_DOWN,
+	UXR_GAMEPAD_LSTICK_LEFT,
+	UXR_GAMEPAD_LSTICK_RIGHT,
 
-#define GAMEPAD_BUTTON_COUNT_REAL (SDL_GamepadButton::SDL_GAMEPAD_BUTTON_COUNT + 10)
+	UXR_GAMEPAD_RSTICK_UP,
+	UXR_GAMEPAD_RSTICK_DOWN,
+	UXR_GAMEPAD_RSTICK_LEFT,
+	UXR_GAMEPAD_RSTICK_RIGHT,
+
+	UXR_BUTTONS_COUNT
+};
 
 class	ENGINE_API				IInputReceiver;
 
@@ -67,8 +96,7 @@ public:
 	enum {
 		COUNT_MOUSE_BUTTONS			= 8,
 		COUNT_MOUSE_AXIS			= 3,
-		COUNT_KB_BUTTONS			= SDL_SCANCODE_COUNT,
-		COUNT_GP_BUTTONS			= GAMEPAD_BUTTON_COUNT_REAL
+		COUNT_KB_BUTTONS			= UXR_BUTTONS_COUNT // keyboard + gamepad
 	};
 
 	std::function<void(u32, bool)> receive_gamepad_addedorremoved;
@@ -83,11 +111,9 @@ private:
 	bool						mouseScrolled = false;
 	char						mouseState[COUNT_MOUSE_BUTTONS] = {};
 	char						KBState[COUNT_KB_BUTTONS] = {};
-	char						GPState[COUNT_GP_BUTTONS] = {};
 	int 						offs[COUNT_MOUSE_AXIS] = {};
 	char						old_mouseState[COUNT_MOUSE_BUTTONS] = {};
 	char						old_KBState[COUNT_KB_BUTTONS] = {};
-	char						old_GPState[COUNT_GP_BUTTONS] = {};
 	bool						controllerMode = false;
 	bool						touchpadMode = false;
 	shared_str GamepadTypeName = "xbox1";
@@ -120,9 +146,8 @@ public:
 	void						MousePressed				(int button);
 	void						MouseReleased				(int button);
 		
-	void                        KeyboardButtonUpdate        (SDL_Scancode scancode, bool IsPressed);
+	void                        KeyboardButtonUpdate        (int scancode, bool IsPressed);
 	
-	void						GamepadButtonUpdate			(int SDLCode, bool IsPressed);
 	void						LeftAxisUpdate				(bool IsX, float value);
 	void						RightAxisUpdate				(bool IsX, float value);
 	void						AdaptiveTriggerUpdate		(bool IsX, float value);
@@ -132,7 +157,6 @@ public:
 
 	void						iCapture					( IInputReceiver *pc );
 	void						iRelease					( IInputReceiver *pc );
-	bool						iGetAsyncGamepadKeyState	( int dik );
 	bool						iGetAsyncKeyState			( int dik );
 	bool						iGetAsyncBtnState			( int btn );
 	void						iGetLastMouseDelta			( Ivector2& p );

@@ -465,34 +465,45 @@ _keyboard keyboards[] = {
 
 _keyboard gamepads[] = 
 {
-	{ "cA",                     SDL_GAMEPAD_BUTTON_SOUTH,         "A" },
-	{ "cB",                     SDL_GAMEPAD_BUTTON_EAST,          "B" },
-	{ "cX",                     SDL_GAMEPAD_BUTTON_WEST,          "X" },
-	{ "cY",                     SDL_GAMEPAD_BUTTON_NORTH,         "Y" },
-	{ "cBACK",                  SDL_GAMEPAD_BUTTON_BACK,          "Back" },
-	{ "cSTART",                 SDL_GAMEPAD_BUTTON_START,         "Start" },
-	{ "cLS",                    SDL_GAMEPAD_BUTTON_LEFT_STICK,    "LS" },
-	{ "cRS",                    SDL_GAMEPAD_BUTTON_RIGHT_STICK,   "RS" },
-	{ "cLB",                    SDL_GAMEPAD_BUTTON_LEFT_SHOULDER, "LB" },
-	{ "cRB",                    SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER,"RB" },
-	{ "cDPAD_UP",               SDL_GAMEPAD_BUTTON_DPAD_UP,       "D-Pad Up" },
-	{ "cDPAD_DOWN",             SDL_GAMEPAD_BUTTON_DPAD_DOWN,     "D-Pad Down" },
-	{ "cDPAD_LEFT",             SDL_GAMEPAD_BUTTON_DPAD_LEFT,     "D-Pad Left" },
-	{ "cDPAD_RIGHT",            SDL_GAMEPAD_BUTTON_DPAD_RIGHT,    "D-Pad Right" },
-	{ "cTOUCHPAD",				SDL_GAMEPAD_BUTTON_TOUCHPAD,	  "Touchpad" },
+	{ "cA",                     UXR_GAMEPAD_A,					"A" },
+	{ "cB",                     UXR_GAMEPAD_B,					"B" },
+	{ "cX",                     UXR_GAMEPAD_X,					"X" },
+	{ "cY",                     UXR_GAMEPAD_Y,					"Y" },
+	{ "cBACK",                  UXR_GAMEPAD_BACK,				"Back" },
+	{ "cSTART",                 UXR_GAMEPAD_START,				"Start" },
+	{ "cLS",                    UXR_GAMEPAD_LS_CLICK,			"LS" },
+	{ "cRS",                    UXR_GAMEPAD_RS_CLICK,			"RS" },
+	{ "cLB",					UXR_GAMEPAD_LB,					"LB" },
+	{ "cRB",					UXR_GAMEPAD_RB,					"RB" },
+	{ "cDPAD_UP",               UXR_GAMEPAD_DPAD_UP,			"D-Pad Up" },
+	{ "cDPAD_DOWN",             UXR_GAMEPAD_DPAD_DOWN,			"D-Pad Down" },
+	{ "cDPAD_LEFT",             UXR_GAMEPAD_DPAD_LEFT,			"D-Pad Left" },
+	{ "cDPAD_RIGHT",            UXR_GAMEPAD_DPAD_RIGHT,			"D-Pad Right" },
 
-	{ "cLTRIGGER",				DIK_LTRIGGER,					  "LT" },
-	{ "cRTRIGGER",				DIK_RTRIGGER,					  "RT" },
+	{ "cLPADDLE1",				UXR_GAMEPAD_LEFT_PADDLE1,		"Left Paddle 1" },
+	{ "cRPADDLE1",				UXR_GAMEPAD_RIGHT_PADDLE1,		"Right Paddle 1" },
+	{ "cLPADDLE2",				UXR_GAMEPAD_LEFT_PADDLE2,		"Left Paddle 2" },
+	{ "cRPADDLE2",				UXR_GAMEPAD_RIGHT_PADDLE2,		"Right Paddle 2" },
 
-	{ "cLSTICK_UP",				DIK_LSTICK_UP,					  "LS Up" },
-	{ "cLSTICK_DOWN",			DIK_LSTICK_DOWN,				  "LS Down" },
-	{ "cLSTICK_LEFT",			DIK_LSTICK_LEFT,				  "LS Left" },
-	{ "cLSTICK_RIGHT",			DIK_LSTICK_RIGHT,				  "LS Right" },
+	{ "cTOUCHPAD",				UXR_GAMEPAD_TOUCHPAD,			"Touchpad" },
+	{ "cMISC2",					UXR_GAMEPAD_MISC2,				"Misc 2" },
+	{ "cMISC3",					UXR_GAMEPAD_MISC3,				"Misc 3" },
+	{ "cMISC4",					UXR_GAMEPAD_MISC4,				"Misc 4" },
+	{ "cMISC5",					UXR_GAMEPAD_MISC5,				"Misc 5" },
+	{ "cMISC6",					UXR_GAMEPAD_MISC6,				"Misc 6" },
 
-	{ "cRSTICK_UP",				DIK_RSTICK_UP,					  "RS Up" },
-	{ "cRSTICK_DOWN",			DIK_RSTICK_DOWN,				  "RS Down" },
-	{ "cRSTICK_LEFT",			DIK_RSTICK_LEFT,				  "RS Left" },
-	{ "cRSTICK_RIGHT",			DIK_RSTICK_RIGHT,				  "RS Right" },
+	{ "cLTRIGGER",				UXR_GAMEPAD_LTRIGGER,			"LT" },
+	{ "cRTRIGGER",				UXR_GAMEPAD_RTRIGGER,			"RT" },
+
+	{ "cLSTICK_UP",				UXR_GAMEPAD_LSTICK_UP,					  "LS Up" },
+	{ "cLSTICK_DOWN",			UXR_GAMEPAD_LSTICK_DOWN,				  "LS Down" },
+	{ "cLSTICK_LEFT",			UXR_GAMEPAD_LSTICK_LEFT,				  "LS Left" },
+	{ "cLSTICK_RIGHT",			UXR_GAMEPAD_LSTICK_RIGHT,				  "LS Right" },
+
+	{ "cRSTICK_UP",				UXR_GAMEPAD_RSTICK_UP,					  "RS Up" },
+	{ "cRSTICK_DOWN",			UXR_GAMEPAD_RSTICK_DOWN,				  "RS Down" },
+	{ "cRSTICK_LEFT",			UXR_GAMEPAD_RSTICK_LEFT,				  "RS Left" },
+	{ "cRSTICK_RIGHT",			UXR_GAMEPAD_RSTICK_RIGHT,				  "RS Right" },
 
 	{ nullptr,                  0}
 };
@@ -783,57 +794,55 @@ const char* GetGamepadSymbol(int dik)
 	{
 		switch (dik)
 		{
-			case SDL_GAMEPAD_BUTTON_SOUTH:
+			case UXR_GAMEPAD_A:
 				return PS4_CROSS;
-			case SDL_GAMEPAD_BUTTON_EAST:
+			case UXR_GAMEPAD_B:
 				return PS4_CIRCLE;
-			case SDL_GAMEPAD_BUTTON_WEST:
+			case UXR_GAMEPAD_X:
 				return PS4_SQUARE;
-			case SDL_GAMEPAD_BUTTON_NORTH:
+			case UXR_GAMEPAD_Y:
 				return PS4_TRIANGLE;
-			case SDL_GAMEPAD_BUTTON_BACK:
+			case UXR_GAMEPAD_BACK:
 				return PS4_SHARE;
-			case SDL_GAMEPAD_BUTTON_GUIDE:
-				return PS4_HOME;
-			case SDL_GAMEPAD_BUTTON_START:
+			case UXR_GAMEPAD_START:
 				return PS4_OPTIONS;
-			case SDL_GAMEPAD_BUTTON_LEFT_STICK:
+			case UXR_GAMEPAD_LS_CLICK:
 				return PS4_L3;
-			case SDL_GAMEPAD_BUTTON_RIGHT_STICK:
+			case UXR_GAMEPAD_RS_CLICK:
 				return PS4_R3;
-			case SDL_GAMEPAD_BUTTON_LEFT_SHOULDER:
+			case UXR_GAMEPAD_LB:
 				return PS4_L1;
-			case SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER:
+			case UXR_GAMEPAD_RB:
 				return PS4_R1;
-			case SDL_GAMEPAD_BUTTON_DPAD_UP:
+			case UXR_GAMEPAD_DPAD_UP:
 				return PS4_DPAD_UP;
-			case SDL_GAMEPAD_BUTTON_DPAD_DOWN:
+			case UXR_GAMEPAD_DPAD_DOWN:
 				return PS4_DPAD_DOWN;
-			case SDL_GAMEPAD_BUTTON_DPAD_LEFT:
+			case UXR_GAMEPAD_DPAD_LEFT:
 				return PS4_DPAD_LEFT;
-			case SDL_GAMEPAD_BUTTON_DPAD_RIGHT:
+			case UXR_GAMEPAD_DPAD_RIGHT:
 				return PS4_DPAD_RIGHT;
-			case SDL_GAMEPAD_BUTTON_TOUCHPAD:
+			case UXR_GAMEPAD_TOUCHPAD:
 				return PS4_TOUCHPAD;
-			case DIK_LTRIGGER:
+			case UXR_GAMEPAD_LTRIGGER:
 				return PS4_L2;
-			case DIK_RTRIGGER:
+			case UXR_GAMEPAD_RTRIGGER:
 				return PS4_R2;
-			case DIK_LSTICK_UP:
+			case UXR_GAMEPAD_LSTICK_UP:
 				return PS4_LSTICK_UP;
-			case DIK_LSTICK_DOWN:
+			case UXR_GAMEPAD_LSTICK_DOWN:
 				return PS4_LSTICK_DOWN;
-			case DIK_LSTICK_LEFT:
+			case UXR_GAMEPAD_LSTICK_LEFT:
 				return PS4_LSTICK_LEFT;
-			case DIK_LSTICK_RIGHT:
+			case UXR_GAMEPAD_LSTICK_RIGHT:
 				return PS4_LSTICK_RIGHT;
-			case DIK_RSTICK_UP:
+			case UXR_GAMEPAD_RSTICK_UP:
 				return PS4_RSTICK_UP;
-			case DIK_RSTICK_DOWN:
+			case UXR_GAMEPAD_RSTICK_DOWN:
 				return PS4_RSTICK_DOWN;
-			case DIK_RSTICK_LEFT:
+			case UXR_GAMEPAD_RSTICK_LEFT:
 				return PS4_RSTICK_LEFT;
-			case DIK_RSTICK_RIGHT:
+			case UXR_GAMEPAD_RSTICK_RIGHT:
 				return PS4_RSTICK_RIGHT;
 		}
 	}
@@ -841,57 +850,55 @@ const char* GetGamepadSymbol(int dik)
 	{
 		switch (dik)
 		{
-			case SDL_GAMEPAD_BUTTON_SOUTH:
+			case UXR_GAMEPAD_A:
 				return PS5_CROSS;
-			case SDL_GAMEPAD_BUTTON_EAST:
+			case UXR_GAMEPAD_B:
 				return PS5_CIRCLE;
-			case SDL_GAMEPAD_BUTTON_WEST:
+			case UXR_GAMEPAD_X:
 				return PS5_SQUARE;
-			case SDL_GAMEPAD_BUTTON_NORTH:
+			case UXR_GAMEPAD_Y:
 				return PS5_TRIANGLE;
-			case SDL_GAMEPAD_BUTTON_BACK:
+			case UXR_GAMEPAD_BACK:
 				return PS5_SHARE;
-			case SDL_GAMEPAD_BUTTON_GUIDE:
-				return PS5_HOME;
-			case SDL_GAMEPAD_BUTTON_START:
+			case UXR_GAMEPAD_START:
 				return PS5_OPTIONS;
-			case SDL_GAMEPAD_BUTTON_LEFT_STICK:
+			case UXR_GAMEPAD_LS_CLICK:
 				return PS5_L3;
-			case SDL_GAMEPAD_BUTTON_RIGHT_STICK:
+			case UXR_GAMEPAD_RS_CLICK:
 				return PS5_R3;
-			case SDL_GAMEPAD_BUTTON_LEFT_SHOULDER:
+			case UXR_GAMEPAD_LB:
 				return PS5_L1;
-			case SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER:
+			case UXR_GAMEPAD_RB:
 				return PS5_R1;
-			case SDL_GAMEPAD_BUTTON_DPAD_UP:
+			case UXR_GAMEPAD_DPAD_UP:
 				return PS5_DPAD_UP;
-			case SDL_GAMEPAD_BUTTON_DPAD_DOWN:
+			case UXR_GAMEPAD_DPAD_DOWN:
 				return PS5_DPAD_DOWN;
-			case SDL_GAMEPAD_BUTTON_DPAD_LEFT:
+			case UXR_GAMEPAD_DPAD_LEFT:
 				return PS5_DPAD_LEFT;
-			case SDL_GAMEPAD_BUTTON_DPAD_RIGHT:
+			case UXR_GAMEPAD_DPAD_RIGHT:
 				return PS5_DPAD_RIGHT;
-			case SDL_GAMEPAD_BUTTON_TOUCHPAD:
+			case UXR_GAMEPAD_TOUCHPAD:
 				return PS5_TOUCHPAD;
-			case DIK_LTRIGGER:
+			case UXR_GAMEPAD_LTRIGGER:
 				return PS5_L2;
-			case DIK_RTRIGGER:
+			case UXR_GAMEPAD_RTRIGGER:
 				return PS5_R2;
-			case DIK_LSTICK_UP:
+			case UXR_GAMEPAD_LSTICK_UP:
 				return PS5_LSTICK_UP;
-			case DIK_LSTICK_DOWN:
+			case UXR_GAMEPAD_LSTICK_DOWN:
 				return PS5_LSTICK_DOWN;
-			case DIK_LSTICK_LEFT:
+			case UXR_GAMEPAD_LSTICK_LEFT:
 				return PS5_LSTICK_LEFT;
-			case DIK_LSTICK_RIGHT:
+			case UXR_GAMEPAD_LSTICK_RIGHT:
 				return PS5_LSTICK_RIGHT;
-			case DIK_RSTICK_UP:
+			case UXR_GAMEPAD_RSTICK_UP:
 				return PS5_RSTICK_UP;
-			case DIK_RSTICK_DOWN:
+			case UXR_GAMEPAD_RSTICK_DOWN:
 				return PS5_RSTICK_DOWN;
-			case DIK_RSTICK_LEFT:
+			case UXR_GAMEPAD_RSTICK_LEFT:
 				return PS5_RSTICK_LEFT;
-			case DIK_RSTICK_RIGHT:
+			case UXR_GAMEPAD_RSTICK_RIGHT:
 				return PS5_RSTICK_RIGHT;
 		}
 	}
@@ -899,57 +906,55 @@ const char* GetGamepadSymbol(int dik)
 	{
 		switch (dik)
 		{
-		case SDL_GAMEPAD_BUTTON_SOUTH:
+		case UXR_GAMEPAD_A:
 			return SWITCH_A;
-		case SDL_GAMEPAD_BUTTON_EAST:
+		case UXR_GAMEPAD_B:
 			return SWITCH_B;
-		case SDL_GAMEPAD_BUTTON_WEST:
+		case UXR_GAMEPAD_X:
 			return SWITCH_X;
-		case SDL_GAMEPAD_BUTTON_NORTH:
+		case UXR_GAMEPAD_Y:
 			return SWITCH_Y;
-		case SDL_GAMEPAD_BUTTON_BACK:
+		case UXR_GAMEPAD_BACK:
 			return SWITCH_Back;
-		case SDL_GAMEPAD_BUTTON_GUIDE:
-			return SWITCH_Guide;
-		case SDL_GAMEPAD_BUTTON_START:
+		case UXR_GAMEPAD_START:
 			return SWITCH_Start;
-		case SDL_GAMEPAD_BUTTON_LEFT_STICK:
+		case UXR_GAMEPAD_LS_CLICK:
 			return SWITCH_LS;
-		case SDL_GAMEPAD_BUTTON_RIGHT_STICK:
+		case UXR_GAMEPAD_RS_CLICK:
 			return SWITCH_RS;
-		case SDL_GAMEPAD_BUTTON_LEFT_SHOULDER:
+		case UXR_GAMEPAD_LB:
 			return SWITCH_LB;
-		case SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER:
+		case UXR_GAMEPAD_RB:
 			return SWITCH_RB;
-		case SDL_GAMEPAD_BUTTON_DPAD_UP:
+		case UXR_GAMEPAD_DPAD_UP:
 			return SWITCH_DPAD_UP;
-		case SDL_GAMEPAD_BUTTON_DPAD_DOWN:
+		case UXR_GAMEPAD_DPAD_DOWN:
 			return SWITCH_DPAD_DOWN;
-		case SDL_GAMEPAD_BUTTON_DPAD_LEFT:
+		case UXR_GAMEPAD_DPAD_LEFT:
 			return SWITCH_DPAD_LEFT;
-		case SDL_GAMEPAD_BUTTON_DPAD_RIGHT:
+		case UXR_GAMEPAD_DPAD_RIGHT:
 			return SWITCH_DPAD_RIGHT;
-		case SDL_GAMEPAD_BUTTON_TOUCHPAD:
+		case UXR_GAMEPAD_TOUCHPAD:
 			return SWITCH_TOUCHPAD;
-		case DIK_LTRIGGER:
+		case UXR_GAMEPAD_LTRIGGER:
 			return SWITCH_LTRIGGER;
-		case DIK_RTRIGGER:
+		case UXR_GAMEPAD_RTRIGGER:
 			return SWITCH_RTRIGGER;
-		case DIK_LSTICK_UP:
+		case UXR_GAMEPAD_LSTICK_UP:
 			return SWITCH_LSTICK_UP;
-		case DIK_LSTICK_DOWN:
+		case UXR_GAMEPAD_LSTICK_DOWN:
 			return SWITCH_LSTICK_DOWN;
-		case DIK_LSTICK_LEFT:
+		case UXR_GAMEPAD_LSTICK_LEFT:
 			return SWITCH_LSTICK_LEFT;
-		case DIK_LSTICK_RIGHT:
+		case UXR_GAMEPAD_LSTICK_RIGHT:
 			return SWITCH_LSTICK_RIGHT;
-		case DIK_RSTICK_UP:
+		case UXR_GAMEPAD_RSTICK_UP:
 			return SWITCH_RSTICK_UP;
-		case DIK_RSTICK_DOWN:
+		case UXR_GAMEPAD_RSTICK_DOWN:
 			return SWITCH_RSTICK_DOWN;
-		case DIK_RSTICK_LEFT:
+		case UXR_GAMEPAD_RSTICK_LEFT:
 			return SWITCH_RSTICK_LEFT;
-		case DIK_RSTICK_RIGHT:
+		case UXR_GAMEPAD_RSTICK_RIGHT:
 			return SWITCH_RSTICK_RIGHT;
 		}
 	}
@@ -957,55 +962,53 @@ const char* GetGamepadSymbol(int dik)
 	{
 		switch (dik)
 		{
-		case SDL_GAMEPAD_BUTTON_SOUTH:
+		case UXR_GAMEPAD_A:
 			return XBOX_A;
-		case SDL_GAMEPAD_BUTTON_EAST:
+		case UXR_GAMEPAD_B:
 			return XBOX_B;
-		case SDL_GAMEPAD_BUTTON_WEST:
+		case UXR_GAMEPAD_X:
 			return XBOX_X;
-		case SDL_GAMEPAD_BUTTON_NORTH:
+		case UXR_GAMEPAD_Y:
 			return XBOX_Y;
-		case SDL_GAMEPAD_BUTTON_BACK:
+		case UXR_GAMEPAD_BACK:
 			return XBOX_Back;
-		case SDL_GAMEPAD_BUTTON_GUIDE:
-			return XBOX_Guide;
-		case SDL_GAMEPAD_BUTTON_START:
+		case UXR_GAMEPAD_START:
 			return XBOX_Start;
-		case SDL_GAMEPAD_BUTTON_LEFT_STICK:
+		case UXR_GAMEPAD_LS_CLICK:
 			return XBOX_LS;
-		case SDL_GAMEPAD_BUTTON_RIGHT_STICK:
+		case UXR_GAMEPAD_RS_CLICK:
 			return XBOX_RS;
-		case SDL_GAMEPAD_BUTTON_LEFT_SHOULDER:
+		case UXR_GAMEPAD_LB:
 			return XBOX_LB;
-		case SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER:
+		case UXR_GAMEPAD_RB:
 			return XBOX_RB;
-		case SDL_GAMEPAD_BUTTON_DPAD_UP:
+		case UXR_GAMEPAD_DPAD_UP:
 			return XBOX_DPAD_UP;
-		case SDL_GAMEPAD_BUTTON_DPAD_DOWN:
+		case UXR_GAMEPAD_DPAD_DOWN:
 			return XBOX_DPAD_DOWN;
-		case SDL_GAMEPAD_BUTTON_DPAD_LEFT:
+		case UXR_GAMEPAD_DPAD_LEFT:
 			return XBOX_DPAD_LEFT;
-		case SDL_GAMEPAD_BUTTON_DPAD_RIGHT:
+		case UXR_GAMEPAD_DPAD_RIGHT:
 			return XBOX_DPAD_RIGHT;
-		case DIK_LTRIGGER:
+		case UXR_GAMEPAD_LTRIGGER:
 			return XBOX_LTRIGGER;
-		case DIK_RTRIGGER:
+		case UXR_GAMEPAD_RTRIGGER:
 			return XBOX_RTRIGGER;
-		case DIK_LSTICK_UP:
+		case UXR_GAMEPAD_LSTICK_UP:
 			return XBOX_LSTICK_UP;
-		case DIK_LSTICK_DOWN:
+		case UXR_GAMEPAD_LSTICK_DOWN:
 			return XBOX_LSTICK_DOWN;
-		case DIK_LSTICK_LEFT:
+		case UXR_GAMEPAD_LSTICK_LEFT:
 			return XBOX_LSTICK_LEFT;
-		case DIK_LSTICK_RIGHT:
+		case UXR_GAMEPAD_LSTICK_RIGHT:
 			return XBOX_LSTICK_RIGHT;
-		case DIK_RSTICK_UP:
+		case UXR_GAMEPAD_RSTICK_UP:
 			return XBOX_RSTICK_UP;
-		case DIK_RSTICK_DOWN:
+		case UXR_GAMEPAD_RSTICK_DOWN:
 			return XBOX_RSTICK_DOWN;
-		case DIK_RSTICK_LEFT:
+		case UXR_GAMEPAD_RSTICK_LEFT:
 			return XBOX_RSTICK_LEFT;
-		case DIK_RSTICK_RIGHT:
+		case UXR_GAMEPAD_RSTICK_RIGHT:
 			return XBOX_RSTICK_RIGHT;
 		}
 	}
@@ -1090,7 +1093,7 @@ ENGINE_API bool any_binded_key_for_action_pressed_c(int actionId)
 				if (g_key_bindings[i].m_gamepad[k])
 				{
 					int dik = g_key_bindings[i].m_gamepad[k]->dik;
-					if (pInput->iGetAsyncGamepadKeyState(dik))
+					if (pInput->iGetAsyncKeyState(dik))
 						return true;
 				}
 			}

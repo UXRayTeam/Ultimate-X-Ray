@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LevelInspector.h"
+#include "../xrEngine/xr_input.h"
 #include "../xrEngine/IInputReceiver.h"
 #include "../xrEngine/Effector.h"
 
@@ -46,9 +47,9 @@ public:
 		M_MOVE_FORWARD			= 0,
 		M_MOVE_BACKWARD			= 1,
 
-		GP_QUIT					= SDL_GAMEPAD_BUTTON_EAST,
-		GP_TOGGLE_ACCELERATION	= SDL_GAMEPAD_BUTTON_LEFT_STICK,
-		GP_RECORD_KEYFRAME		= SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER,
+		GP_QUIT					= UXR_GAMEPAD_B,
+		GP_TOGGLE_ACCELERATION	= UXR_GAMEPAD_LS_CLICK,
+		GP_RECORD_KEYFRAME		= UXR_GAMEPAD_RB,
 	};
 
 	enum ECameraMode : u8

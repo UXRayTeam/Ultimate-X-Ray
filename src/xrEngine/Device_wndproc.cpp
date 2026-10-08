@@ -54,7 +54,7 @@ bool CRenderDevice::on_event	(SDL_Event& Event)
 		}
 		case SDL_EVENT_GAMEPAD_BUTTON_DOWN:
 		{
-			pInput->GamepadButtonUpdate(Event.gbutton.button, true);
+			pInput->KeyboardButtonUpdate(int(Event.gbutton.button) + SDL_SCANCODE_COUNT, true);
 			// DualSense microphone LED toggle
 			if (GGamepadService->Type == EGamepadType::DualSense && 
 				Event.gbutton.button == SDL_GAMEPAD_BUTTON_MISC1)
@@ -66,7 +66,7 @@ bool CRenderDevice::on_event	(SDL_Event& Event)
 		}
 		case SDL_EVENT_GAMEPAD_BUTTON_UP:
 		{
-			pInput->GamepadButtonUpdate(Event.gbutton.button, false);
+			pInput->KeyboardButtonUpdate(int(Event.gbutton.button) + SDL_SCANCODE_COUNT, false);
 			break;
 		}
 		case SDL_EVENT_GAMEPAD_AXIS_MOTION:
@@ -95,13 +95,13 @@ bool CRenderDevice::on_event	(SDL_Event& Event)
 			else
 			{
 				bool isX = Event.gaxis.axis == 4;
-				int dik = DIK_RTRIGGER;
+				int key = UXR_GAMEPAD_RTRIGGER;
 				if (isX)
 				{
-					dik = DIK_LTRIGGER;
+					key = UXR_GAMEPAD_LTRIGGER;
 				}
 				bool triggerPressed = Value >= 0.75f;
-				pInput->GamepadButtonUpdate(dik, triggerPressed);
+				pInput->KeyboardButtonUpdate(key, triggerPressed);
 				// L2 & R2 Triggers
 				pInput->AdaptiveTriggerUpdate(isX, ValueReal);
 			}

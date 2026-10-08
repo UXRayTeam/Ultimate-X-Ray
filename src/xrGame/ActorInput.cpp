@@ -1642,7 +1642,7 @@ void CActor::ActorUse()
 
 	if (!m_pUsableObject || m_pUsableObject->nonscript_usable())
 	{
-		bool isKeyHeld = pInput->GetControllerMode() ? pInput->iGetAsyncGamepadKeyState(get_action_dik(kSPRINT_TOGGLE)) : Level().IR_GetKeyState(SDL_SCANCODE_LSHIFT);
+		bool isKeyHeld = pInput->GetControllerMode() ? pInput->iGetAsyncKeyState(get_action_dik(kSPRINT_TOGGLE)) : Level().IR_GetKeyState(SDL_SCANCODE_LSHIFT);
 		if (m_pPersonWeLookingAt != nullptr)
 		{
 			CEntityAlive* pEntityAliveWeLookingAt = m_pPersonWeLookingAt->cast_entity_alive();

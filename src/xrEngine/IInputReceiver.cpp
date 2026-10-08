@@ -38,13 +38,6 @@ void IInputReceiver::IR_OnDeactivate					(void)
 			IR_OnMouseRelease(i);
 		}
 	}
-	for (size_t i = 0; i < GAMEPAD_BUTTON_COUNT_REAL; i++)
-	{
-		if (IR_GetGamepadKeyState(i))
-		{
-			IR_GamepadKeyRelease(i);
-		}
-	}
 }
 
 void IInputReceiver::IR_OnActivate(void)
@@ -55,12 +48,6 @@ bool IInputReceiver::IR_GetKeyState(int dik)
 {
 	VERIFY(pInput);
 	return pInput->iGetAsyncKeyState(dik);
-}
-
-bool IInputReceiver::IR_GetGamepadKeyState(int id)
-{
-	VERIFY(pInput);
-	return pInput->iGetAsyncGamepadKeyState(id);
 }
 
 bool IInputReceiver::IR_GetBtnState(int btn)
